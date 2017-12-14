@@ -215,7 +215,7 @@
 	
 	
   <welcome-file-list>
-    <welcome-file>auth.html</welcome-file>
+    <welcome-file>login.html</welcome-file>
   </welcome-file-list>
   
   
