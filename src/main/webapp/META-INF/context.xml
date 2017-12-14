@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- privileged="true" 特别的权限  -->
+<Context reloadable="false" delegate="true" privileged="true"/>
