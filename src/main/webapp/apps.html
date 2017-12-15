@@ -89,10 +89,10 @@
 			<div class="tpl-left-nav-list">
 				<ul class="tpl-left-nav-menu">
 					<li class="tpl-left-nav-item"><a href="index.html"
-						class="nav-link active"> <i class="am-icon-home"></i> <span>系统</span>
+						class="nav-link"> <i class="am-icon-home"></i> <span>系统</span>
 					</a></li>
 					<li class="tpl-left-nav-item"><a href="apps.html"
-						class="nav-link tpl-left-nav-link-list"> <i
+						class="nav-link tpl-left-nav-link-list active"> <i
 							class="am-icon-bar-chart"></i> <span>应用</span> <i
 							class="tpl-left-nav-content tpl-badge-danger">12</i>
 
@@ -120,71 +120,63 @@
 		<div class="tpl-content-wrapper">
 			<ol class="am-breadcrumb">
 				<li><a href="index.html" class="am-icon-home">首页</a></li>
-				<li><a href="">系统信息</a></li>
+				<li><a href="">应用</a></li>
 			</ol>
-
-
-			<div class="tpl-content-scope">
-				<div class="note note-info">
-					<h3>
-						T manager <span class="close" data-close="note"></span>
-					</h3>
-					<p>tmanager 是一个Tomcat web远程管理汉化版应用</p>
-					<p>
-						<span class="label label-danger">提示:</span>
-					</p>
-				</div>
-			</div>
-
-			<div class="tpl-content-scope">
-				<div class="note note-info">
-					<h3>系统概述信息</h3>
-					<p>
-					<ul>
-						<li>当前时间: 2017-12-15 16:52:08</li>
-						<li>操作系统运行时间: 11天 0小时 34分钟 10秒</li>
-						<li>Tomcat运行时间: 6天 1小时 54分钟 02秒</li>
-						<li>操作系统名称: Windows Server 2012 () amd64 6.2</li>
-						<li>Java虚拟机: Java(TM) SE Runtime Environment 1.7.0_17-b02
-							Java HotSpot(TM) 64-Bit Server VM)</li>
-					</ul>
-
-					</p>
-
-				</div>
-			</div>
+			<div class="tpl-portlet-components">
 
 
 
-
-			<div class="tpl-portlet">
-				<div class="tpl-portlet-title">
-					<div class="tpl-caption font-red ">
-						<i class="am-icon-bar-chart"></i> <span>系统内存信息</span>
-					</div>
-				</div>
-
-				<div class="tpl-scrollable">
-
-
-					<table class="am-table tpl-table">
+				<div class="am-u-sm-12">
+					<table width="100%"
+						class="am-table am-table-compact am-table-striped tpl-table-black "
+						id="example-r">
 						<thead>
-							<tr class="tpl-table-uppercase">
-								<th>名称</th>
-								<th>信息</th>
+							<tr>
+								<th>应用名称</th>
+								<th>运行状态</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>内存使用率</td>
-								<td class="font-green bold">30%</td>
+							<tr class="gradeX">
+								<td>Tmanager</td>
+								<td><span class="am-badge tpl-badge-success">Running</span>
+								</td>
+								<td>
+
+
+									<div class="am-btn-toolbar">
+										<div class="am-btn-group am-btn-group-xs">
+											<button
+												class="am-btn am-btn-default am-btn-xs am-text-secondary">
+												<span class="am-icon-pencil-square-o"></span> 编辑
+											</button>
+											<button
+												class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+												<span class="am-icon-copy"></span> 复制
+											</button>
+											<button
+												class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+												<span class="am-icon-trash-o"></span> 删除
+											</button>
+										</div>
+									</div>
+
+
+
+								</td>
 							</tr>
 
 
+							<!-- more data -->
 						</tbody>
 					</table>
 				</div>
+
+
+
 			</div>
+
 
 
 

@@ -89,7 +89,7 @@
 			<div class="tpl-left-nav-list">
 				<ul class="tpl-left-nav-menu">
 					<li class="tpl-left-nav-item"><a href="index.html"
-						class="nav-link active"> <i class="am-icon-home"></i> <span>系统</span>
+						class="nav-link"> <i class="am-icon-home"></i> <span>系统</span>
 					</a></li>
 					<li class="tpl-left-nav-item"><a href="apps.html"
 						class="nav-link tpl-left-nav-link-list"> <i
@@ -99,7 +99,7 @@
 					</a></li>
 
 					<li class="tpl-left-nav-item"><a href="deploy.html"
-						class="nav-link tpl-left-nav-link-list"> <i
+						class="nav-link tpl-left-nav-link-list active"> <i
 							class="am-icon-key"></i> <span>部署</span>
 					</a></li>
 
@@ -107,7 +107,6 @@
 						class="nav-link tpl-left-nav-link-list"> <i
 							class="am-icon-key"></i> <span>日志</span>
 					</a></li>
-
 
 				</ul>
 			</div>
@@ -120,71 +119,54 @@
 		<div class="tpl-content-wrapper">
 			<ol class="am-breadcrumb">
 				<li><a href="index.html" class="am-icon-home">首页</a></li>
-				<li><a href="">系统信息</a></li>
+				<li><a href="">部署应用</a></li>
 			</ol>
-
-
 			<div class="tpl-content-scope">
-				<div class="note note-info">
-					<h3>
-						T manager <span class="close" data-close="note"></span>
-					</h3>
-					<p>tmanager 是一个Tomcat web远程管理汉化版应用</p>
-					<p>
-						<span class="label label-danger">提示:</span>
-					</p>
-				</div>
-			</div>
 
-			<div class="tpl-content-scope">
-				<div class="note note-info">
-					<h3>系统概述信息</h3>
-					<p>
-					<ul>
-						<li>当前时间: 2017-12-15 16:52:08</li>
-						<li>操作系统运行时间: 11天 0小时 34分钟 10秒</li>
-						<li>Tomcat运行时间: 6天 1小时 54分钟 02秒</li>
-						<li>操作系统名称: Windows Server 2012 () amd64 6.2</li>
-						<li>Java虚拟机: Java(TM) SE Runtime Environment 1.7.0_17-b02
-							Java HotSpot(TM) 64-Bit Server VM)</li>
-					</ul>
 
-					</p>
+				<div class="tpl-portlet-components">
 
-				</div>
-			</div>
+					<div class="tpl-block">
+
+						<div class="am-g">
+							<div class="tpl-form-body tpl-form-line">
+								<form class="am-form tpl-form-line-form">
+
+									<div class="am-form-group">
+										<label for="user-weibo" class="am-u-sm-3 am-form-label">应用包</label>
+										<div class="am-u-sm-9">
+											<div class="am-form-group am-form-file">
+												<button type="button" class="am-btn am-btn-danger am-btn-sm">
+													<i class="am-icon-cloud-upload"></i> 添加war
+												</button>
+												<input id="doc-form-file" type="file" multiple="">
+											</div>
+
+										</div>
+									</div>
 
 
 
+									<div class="am-form-group">
+										<div class="am-u-sm-9 am-u-sm-push-3">
+											<button type="button"
+												class="am-btn am-btn-primary tpl-btn-bg-color-success ">开始部署</button>
+										</div>
+									</div>
+								</form>
 
-			<div class="tpl-portlet">
-				<div class="tpl-portlet-title">
-					<div class="tpl-caption font-red ">
-						<i class="am-icon-bar-chart"></i> <span>系统内存信息</span>
+							</div>
+						</div>
 					</div>
+
+
 				</div>
 
-				<div class="tpl-scrollable">
 
 
-					<table class="am-table tpl-table">
-						<thead>
-							<tr class="tpl-table-uppercase">
-								<th>名称</th>
-								<th>信息</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>内存使用率</td>
-								<td class="font-green bold">30%</td>
-							</tr>
 
-
-						</tbody>
-					</table>
-				</div>
 			</div>
+
 
 
 
