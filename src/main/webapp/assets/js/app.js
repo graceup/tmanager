@@ -8,7 +8,7 @@ $(function() {
         $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
             $fullText.text($.AMUI.fullscreen.isFullscreen ? '退出全屏' : '开启全屏');
         });
-
+ 
         
         $('#logout-link').on('click', function() {
         	 window.location='login.html';
