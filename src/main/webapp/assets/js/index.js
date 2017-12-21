@@ -21,6 +21,7 @@ function replaceSeperator(mobiles) {
 //初始化
 $(function() { 
 	
+	//获取Tomcat自带信息
 	$.ajax({
 		type : "GET",
 		url : "text/serverinfo",
@@ -72,6 +73,32 @@ $(function() {
 
 		}
 	});
+	
+	
+ 
+	
+	//获取Tomcat自带信息
+	$.ajax({
+		type : "GET",
+		url : "info",
+		success : function(data) { 
+			console.log(data);
+			
+		var infoHtml='<ul> '+
+					 '	<li>当前时间: '+data.baseInfo.currentTime+'</li>'+
+					 '	<li>操作系统运行时间: '+data.baseInfo.osRunTime+'</li>'+
+					 '	<li>Tomcat运行时间: '+data.baseInfo.tomcatRunTime+'</li>'+
+					 '	<li>目录: '+data.baseInfo.tomcatPath+'</li>'+
+					 '</ul>';
+			
+		$("#text-info").before(infoHtml);
+			
+		},
+		dataType:"json",
+		beforeSend : function(xhr) { }
+	});
+	
+	
 	
 	
 })
