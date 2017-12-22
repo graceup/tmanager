@@ -140,11 +140,29 @@ function getInformation(){
 	
 }
 
+var intervalObj=null;
+
 //初始化
 $(function() {
 	
+	 $('.reflesh-button').on('click', function() {
+	
+		 if(intervalObj==null){
+			 intervalObj=setInterval('getInformation()',30000);
+			 $('.reflesh-button').html('停止30秒定时刷新');
+		 }else{
+			 window.clearInterval(intervalObj);
+			 intervalObj=null;
+			 $('.reflesh-button').html('开启30秒定时刷新');
+		 }
+		 
+		
+		
+	});
+	
+	
+	
 	getInformation();
-//	setInterval('getInformation()',30000);
 	
 })
    

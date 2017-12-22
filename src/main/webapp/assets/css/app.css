@@ -1968,3 +1968,7 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
         padding-left: 0;
     }
 }
+
+.reflesh-button{
+	float: right;
+}
