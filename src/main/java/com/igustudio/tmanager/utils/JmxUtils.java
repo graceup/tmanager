@@ -1,4 +1,4 @@
-package com.igustudio.tmanager.util;
+package com.igustudio.tmanager.utils;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.MBeanAttributeInfo;
@@ -9,7 +9,7 @@ import javax.management.openmbean.CompositeData;
 
 /**
  */
-public class JmxTools {
+public class JmxUtils {
 
 	public static Object getAttribute(MBeanServer mBeanServer,
 			ObjectName oName, String attrName) throws Exception {

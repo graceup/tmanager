@@ -125,6 +125,8 @@
 			<div class="tpl-content-scope">
 				<div class="note note-info">
 					<h3>系统概述信息</h3>
+					<div id="base-info">
+					</div>
 					<span id="text-info">
 					</span>
 					
@@ -133,7 +135,34 @@
 			</div>
 
 
+<!-- 
 
+			<div class="row">
+                <div class="am-u-md-6 am-u-sm-12 row-mb">
+
+                    <div class="tpl-portlet">
+                        
+                    </div>
+                </div>
+                <div class="am-u-md-6 am-u-sm-12 row-mb">
+                    <div class="tpl-portlet">
+                        <div class="tpl-portlet-title">
+                            <div class="tpl-caption font-green ">
+                                <span>进度</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+ -->
+
+
+
+
+<div class="row">
+                <div class="am-u-md-6 am-u-sm-12 row-mb">
 
 			<div class="tpl-portlet">
 				<div class="tpl-portlet-title">
@@ -155,39 +184,39 @@
 						<tbody>
 							<tr>
 								<td>内存使用率</td>
-								<td class="font-green bold">30%</td>
+								<td class="font-green bold" id="memUsed"></td>
 							</tr>
 							<tr>
 								<td>空闲</td>
-								<td class="font-green bold">30%</td>
+								<td class="font-green bold" id="freeMemory"></td>
 							</tr>
 							<tr>
 								<td>总共</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="totalMemory"></td>
 							</tr>
 							<tr>
 								<td>最大</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="maxMemory"></td>
 							</tr>
 							<tr>
 								<td>物理内存</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="totalPhysicalMemorySize"></td>
 							</tr>
 							<tr>
 								<td>空闲内存</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="freePhysicalMemorySize"></td>
 							</tr>
 							<tr>
 								<td>已提交虚拟内存</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="committedVirtualMemorySize"></td>
 							</tr>
 							<tr>
 								<td>Swap内存</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="totalSwapSpaceSize"></td>
 							</tr>
 							<tr>
 								<td>空闲Swap内存</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="freeSwapSpaceSize"></td>
 							</tr>
 
 
@@ -195,7 +224,8 @@
 					</table>
 				</div>
 			</div>
-			<br>
+			 </div>
+                <div class="am-u-md-6 am-u-sm-12 row-mb">
 
 			<div class="tpl-portlet">
 				<div class="tpl-portlet-title">
@@ -205,8 +235,6 @@
 				</div>
 
 				<div class="">
-
-
 					<table class="am-table tpl-table">
 						<thead>
 							<tr class="tpl-table-uppercase">
@@ -217,21 +245,22 @@
 						<tbody>
 							<tr>
 								<td>CPU使用率</td>
-								<td class="font-green bold">30%</td>
+								<td class="font-green bold" id="cpuUsage"></td>
 							</tr>
 							<tr>
 								<td>CPU核数</td>
-								<td class="font-green bold">30%</td>
+								<td class="font-green bold" id="cpuNum"></td>
 							</tr>
 							<tr>
 								<td>CPU时钟频率</td>
-								<td class="font-green bold" id="xxxxxxxxxx"></td>
+								<td class="font-green bold" id="cpuFrequency"></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<br>
+			</div>
+			</div>
 			
 			<div class="tpl-content-scope">
 				<div class="note note-info">

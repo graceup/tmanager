@@ -18,8 +18,12 @@ function replaceSeperator(mobiles) {
     return result;
 }
 
-//初始化
-$(function() { 
+/**
+ * 获取基本信息
+ * 
+ */
+function getInformation(){
+	
 	
 	//获取Tomcat自带信息
 	$.ajax({
@@ -91,7 +95,23 @@ $(function() {
 					 '	<li>目录: '+data.baseInfo.tomcatPath+'</li>'+
 					 '</ul>';
 			
-		$("#text-info").before(infoHtml);
+		$("#base-info").html(infoHtml);
+
+		$("#cpuNum").html(data.cpuInfo.cpuNum);
+		$("#cpuFrequency").html(data.cpuInfo.cpuFrequency);
+		$("#cpuUsage").html(data.cpuInfo.cpuUsage);
+
+		$("#freeSwapSpaceSize").html(data.menInfo.freeSwapSpaceSize);
+		$("#freePhysicalMemorySize").html(data.menInfo.freePhysicalMemorySize);
+		$("#totalMemory").html(data.menInfo.totalMemory);
+		$("#maxMemory").html(data.menInfo.maxMemory);
+		$("#freeMemory").html(data.menInfo.freeMemory);
+		$("#totalSwapSpaceSize").html(data.menInfo.totalSwapSpaceSize);
+		$("#memUsed").html(data.menInfo.memUsed);
+		$("#committedVirtualMemorySize").html(data.menInfo.committedVirtualMemorySize);
+		$("#totalPhysicalMemorySize").html(data.menInfo.totalPhysicalMemorySize);
+		
+		
 			
 		},
 		dataType:"json",
@@ -100,6 +120,13 @@ $(function() {
 	
 	
 	
+}
+
+//初始化
+$(function() {
+	
+	getInformation();
+//	setInterval('getInformation()',30000);
 	
 })
    

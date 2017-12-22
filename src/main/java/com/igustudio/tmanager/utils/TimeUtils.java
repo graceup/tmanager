@@ -1,4 +1,4 @@
-package com.igustudio.tmanager.util;
+package com.igustudio.tmanager.utils;
 
 /**
  * 时间转换工具类
