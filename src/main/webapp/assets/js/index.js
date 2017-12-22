@@ -112,6 +112,24 @@ function getInformation(){
 		$("#totalPhysicalMemorySize").html(data.menInfo.totalPhysicalMemorySize);
 		
 		
+		var diskInfoHtml='';
+		
+		for(x in data.diskInfo){
+			var oneDiskInfo=data.diskInfo[x];
+			console.log(oneDiskInfo);
+			diskInfoHtml+='<tr>'+
+							'<td>'+oneDiskInfo.path+'</td>'+
+							'<td>'+oneDiskInfo.usableSpace+'</td>'+
+							'<td>'+oneDiskInfo.freeSpace+'</td>'+
+							'<td>'+oneDiskInfo.totalSpace+'</td>'+
+							'<td class="font-green bold">'+oneDiskInfo.percent+'</td>'+
+							'</tr>';
+		}
+	
+	
+		$('#disk-info').html(diskInfoHtml);
+		
+		
 			
 		},
 		dataType:"json",
