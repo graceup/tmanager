@@ -130,7 +130,9 @@
 
 						<div class="am-g">
 							<div class="tpl-form-body tpl-form-line">
-								<form class="am-form tpl-form-line-form">
+								<form class="am-form tpl-form-line-form" id="deploy-form" 
+								enctype="multipart/form-data"
+								  action="html/upload?org.apache.catalina.filters.CSRF_NONCE=C6AB1761AFA62EDF205BB4BCE758A355" method="POST">
 
 									<div class="am-form-group">
 										<label for="user-weibo" class="am-u-sm-3 am-form-label">应用包</label>
@@ -139,7 +141,7 @@
 												<button type="button" class="am-btn am-btn-danger am-btn-sm">
 													<i class="am-icon-cloud-upload"></i> 添加war
 												</button>
-												<input id="doc-form-file" type="file" multiple="">
+												<input id="doc-form-file" type="file"   name="deployWar">
 											</div>
 
 										</div>
@@ -149,7 +151,7 @@
 
 									<div class="am-form-group">
 										<div class="am-u-sm-9 am-u-sm-push-3">
-											<button type="button"
+											<button type="submit" id="submit-button"
 												class="am-btn am-btn-primary tpl-btn-bg-color-success ">开始部署</button>
 										</div>
 									</div>
@@ -178,7 +180,9 @@
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/iscroll.js"></script>
+	<script src="assets/js/jquery.form.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script src="assets/js/deploy.js"></script>
 </body>
 
 </html>
