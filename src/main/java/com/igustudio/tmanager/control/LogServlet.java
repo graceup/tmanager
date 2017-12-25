@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import com.igustudio.tmanager.model.BackwardsFileStream;
+import com.igustudio.tmanager.model.BackwardsLineReader;
 import com.igustudio.tmanager.utils.Byteutils;
 import com.igustudio.tmanager.utils.TomcatUtils;
 
@@ -47,7 +50,7 @@ public class LogServlet extends HttpServlet {
 		} else if ("delete".equals(oper)) {
 			delete(request, response);
 		} else if ("trace".equals(oper)) {
-//			trace(request, response);
+			trace(request, response);
 		} else if ("download".equals(oper)) {
 			download(request, response);
 		}
@@ -66,14 +69,159 @@ public class LogServlet extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	protected void download(HttpServletRequest request, HttpServletResponse response)
+	protected void trace(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String filName = request.getParameter("filName");
+		String fileName = request.getParameter("fileName");
 		
 		try {
 			
-			String  logPath=System.getProperty("catalina.home")+"/logs/"+filName;
+			String  logPath=System.getProperty("catalina.home")+"/logs/"+fileName;
+			
+			File logFile = new File(logPath);
+			
+			
+			if (!logFile.exists()) {
+				PrintWriter writer = response.getWriter();
+				writer.write("文件[" + logPath + "]不存在！");
+			} else {
+				
+				
+				JSONObject lf = new JSONObject();
+				lf.put("fileName",logFile.getName());
+				lf.put("fileSize",Byteutils.formatByte(logFile.length(), 2));
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				lf.put("lastModified",sdf.format(new Date(logFile.lastModified())));
+				
+				long actualLength = logFile.length();
+				
+				long lastKnownLength =new Long(request.getParameter("lastKnownLength"));
+				long currentLength =new Long(request.getParameter("currentLength"));
+				long maxReadLines = new Long(request.getParameter("maxReadLines"));
+				
+				
+				boolean ajaxRequest=false;
+				
+				LinkedList<String> lines = new LinkedList<String>();
+				
+				
+				
+				if (lastKnownLength > currentLength || lastKnownLength > actualLength
+						|| currentLength > actualLength) {
+					//
+					// file length got reset
+					//
+					lastKnownLength = 0;
+					lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
+				}
+				
+				
+				BackwardsFileStream bfs = new BackwardsFileStream(logFile, currentLength);
+				if (!ajaxRequest) {
+					// 首次读取日志时，如果日志大小超过50K，则只读取文件位置在50K以后的数据
+					if (actualLength > 50000) {
+						lastKnownLength = actualLength - 50000;
+					}
+					bfs = new BackwardsFileStream(logFile, currentLength);
+				}
+				try {
+					BackwardsLineReader br = new BackwardsLineReader(bfs);
+					long readSize = 0;
+					long totalReadSize = currentLength - lastKnownLength;
+					String s;
+					while (readSize < totalReadSize && (s = br.readLine()) != null) {
+						String line = s.trim();
+						if (!line.equals("")) {
+							// 处理特殊字符
+							line = replaceChar(line);
+
+							if (!ajaxRequest && line.startsWith("at")) {
+								lines.addFirst("<span style='margin-left: 20px; color: red;'>"
+										+ line + "</span>");
+							} else {
+								lines.addFirst(line);
+							}
+							readSize += s.length();
+						} else {
+							readSize++;
+						}
+						if (maxReadLines != 0 && lines.size() >= maxReadLines) {
+							break;
+						}
+					}
+
+					if (lastKnownLength != 0 && readSize > totalReadSize) {
+						lines.removeFirst();
+					}
+				} finally {
+					bfs.close();
+				}
+				
+				
+				StringBuilder builder = new StringBuilder();
+				for (String l : lines) {
+					// 处理特殊字符
+					l = replaceChar(l);
+
+					builder.append("<div class=\"line\">");
+					if (l.trim().startsWith("at")) {
+						builder.append("<span style='margin-left: 20px; color: red;'>");
+						builder.append(l);
+						builder.append("</span>");
+					} else {
+						builder.append(l);
+					}
+					builder.append("</div>");
+				}
+				
+				PrintWriter writer = response.getWriter();
+				writer.write(builder.toString());
+				
+				
+				
+				
+			}
+			
+		} catch (Exception e) {
+			PrintWriter writer = response.getWriter();
+			writer.write("出现异常："+e.getMessage());
+			logger.error("info error:" + e.getMessage(), e);
+		}
+		
+		
+		
+	}
+	
+	
+	/**
+	 * 替换敏感字符
+	 * 
+	 * @param line
+	 */
+	public static String replaceChar(String line) {
+		line = line.replaceAll("<", "&lt;");
+		line = line.replaceAll(">", "&gt;");
+		line = line.replaceAll("\"", "&quot;");
+		return line;
+	}
+	
+	/**
+	 * 下载日志
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void download(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		String fileName = request.getParameter("fileName");
+		
+		try {
+			
+			String  logPath=System.getProperty("catalina.home")+"/logs/"+fileName;
 			
 			File logFile = new File(logPath);
 			
@@ -108,11 +256,11 @@ public class LogServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		JSONObject json = new JSONObject();
 		
-		String filName = request.getParameter("filName");
+		String fileName = request.getParameter("fileName");
 		
 		try {
 			
-			String  logPath=System.getProperty("catalina.home")+"/logs/"+filName;
+			String  logPath=System.getProperty("catalina.home")+"/logs/"+fileName;
 			
 			File logFile = new File(logPath);
 			 

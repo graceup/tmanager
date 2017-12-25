@@ -8,7 +8,7 @@ function traceLog(fileName){
 	
 	$.ajax({
 		type : "GET",
-		url : "log?oper=trace&filName="+fileName,
+		url : "log?oper=trace&fileName="+fileName,
 		success : function(data) { 
 			console.log(data);
 			getInformation();
@@ -26,7 +26,7 @@ function deleteLog(fileName){
 	$.ajax({
 		type : "GET",
 		dataType:"json",
-		url : "log?oper=delete&filName="+fileName,
+		url : "log?oper=delete&fileName="+fileName,
 		success : function(data) { 
 			console.log(data);
 			if(data.code==0){
@@ -71,11 +71,11 @@ function getInformation(){
 						'	<td>'+
 						'		<div class="am-btn-toolbar">'+
 						'			<div class="am-btn-group am-btn-group-xs">'+
-						'				<a href="log?oper=download&filName='+oneLine.fileName+'" target="_blank" '+
+						'				<a href="log?oper=download&fileName='+oneLine.fileName+'" target="_blank" '+
 						'					class="am-btn am-btn-default am-btn-xs am-text-secondary">'+
 						'					<span class="am-icon-cloud-download"></span>下载'+
 						'				</a>'+
-						'				<a href="tace-log.html?filName='+oneLine.fileName+'" target="_blank" '+
+						'				<a href="trace-log.html?fileName='+oneLine.fileName+'" target="_blank" '+
 						'					class="am-btn am-btn-default am-btn-xs am-hide-sm-only">'+
 						'					<span class="am-icon-align-justify"></span> 跟踪'+
 						'				</a>'+
