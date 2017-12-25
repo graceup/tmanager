@@ -136,6 +136,7 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+<!-- 
   <filter>
     <filter-name>CSRF</filter-name>
     <filter-class>org.apache.catalina.filters.CsrfPreventionFilter</filter-class>
@@ -150,6 +151,8 @@
     <servlet-name>HTMLManager</servlet-name>
     <servlet-name>jsp</servlet-name>
   </filter-mapping>
+ 
+ -->
 
   <!-- Define a Security Constraint on this Application -->
   <!-- NOTE:  None of these roles are present in the default users file -->
