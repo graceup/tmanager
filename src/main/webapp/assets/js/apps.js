@@ -140,11 +140,11 @@ function getInformation(){
 									'		<div class="am-btn-group am-btn-group-xs">'+
 									'			<button onclick="stopApp(\''+key+'\')"  '+
 									'				class="am-btn am-btn-default am-btn-xs am-text-secondary">'+
-									'				<span class="am-icon-pencil-square-o"></span>停止'+
+									'				<span class="am-icon-stop"></span>停止'+
 									'			</button>'+
 									'			<button onclick="reloadApp(\''+key+'\')"  '+
 									'				class="am-btn am-btn-default am-btn-xs am-hide-sm-only">'+
-									'				<span class="am-icon-copy"></span> 重载'+
+									'				<span class="am-icon-refresh am-icon-spin"></span> 重载'+
 									'			</button>'+
 									'			<button onclick="undeployApp(\''+key+'\')"  '+
 									'				class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">'+
@@ -159,7 +159,7 @@ function getInformation(){
 										'		<div class="am-btn-group am-btn-group-xs">'+
 										'			<button onclick="startApp(\''+key+'\')"  '+
 										'				class="am-btn am-btn-default am-btn-xs am-text-secondary">'+
-										'				<span class="am-icon-pencil-square-o"></span>启动'+
+										'				<span class="am-icon-play"></span>启动'+
 										'			</button>'+
 										'		</div>'+
 										'	</div>';
