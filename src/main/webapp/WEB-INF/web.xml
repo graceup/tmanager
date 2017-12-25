@@ -31,6 +31,14 @@
 		<servlet-name>InfoServlet</servlet-name>
 		<url-pattern>/info</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>LogServlet</servlet-name>
+		<servlet-class>com.igustudio.tmanager.control.LogServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogServlet</servlet-name>
+		<url-pattern>/log</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
     <servlet-name>Manager</servlet-name>

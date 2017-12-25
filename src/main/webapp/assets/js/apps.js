@@ -195,68 +195,12 @@ function getInformation(){
 	});
 	
 	
-	return;
-	
-	//获取Tomcat自带信息
-	$.ajax({
-		type : "GET",
-		url : "info",
-		success : function(data) { 
-			console.log(data);
-			
-		var infoHtml='<ul> '+
-					 '	<li>当前时间: '+data.baseInfo.currentTime+'</li>'+
-					 '	<li>操作系统运行时间: '+data.baseInfo.osRunTime+'</li>'+
-					 '	<li>Tomcat运行时间: '+data.baseInfo.tomcatRunTime+'</li>'+
-					 '	<li>目录: '+data.baseInfo.tomcatPath+'</li>'+
-					 '</ul>';
-			
-		$("#base-info").html(infoHtml);
-
-		$("#cpuNum").html(data.cpuInfo.cpuNum);
-		$("#cpuFrequency").html(data.cpuInfo.cpuFrequency);
-		$("#cpuUsage").html(data.cpuInfo.cpuUsage);
-
-		$("#freeSwapSpaceSize").html(data.menInfo.freeSwapSpaceSize);
-		$("#freePhysicalMemorySize").html(data.menInfo.freePhysicalMemorySize);
-		$("#totalMemory").html(data.menInfo.totalMemory);
-		$("#maxMemory").html(data.menInfo.maxMemory);
-		$("#freeMemory").html(data.menInfo.freeMemory);
-		$("#totalSwapSpaceSize").html(data.menInfo.totalSwapSpaceSize);
-		$("#memUsed").html(data.menInfo.memUsed);
-		$("#committedVirtualMemorySize").html(data.menInfo.committedVirtualMemorySize);
-		$("#totalPhysicalMemorySize").html(data.menInfo.totalPhysicalMemorySize);
-		
-		
-		var diskInfoHtml='';
-		
-		for(x in data.diskInfo){
-			var oneDiskInfo=data.diskInfo[x];
-			console.log(oneDiskInfo);
-			diskInfoHtml+='<tr>'+
-							'<td>'+oneDiskInfo.path+'</td>'+
-							'<td>'+oneDiskInfo.usableSpace+'</td>'+
-							'<td>'+oneDiskInfo.freeSpace+'</td>'+
-							'<td>'+oneDiskInfo.totalSpace+'</td>'+
-							'<td class="font-green bold">'+oneDiskInfo.percent+'</td>'+
-							'</tr>';
-		}
-	
-	
-		$('#disk-info').html(diskInfoHtml);
-		
-		
-			
-		},
-		dataType:"json",
-		beforeSend : function(xhr) { }
-	});
+	 
 	
 	
 	
 }
 
-var intervalObj=null;
 
 //初始化
 $(function() {
