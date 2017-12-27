@@ -2,22 +2,22 @@ package com.igustudio.tmanager.control;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
+import com.igustudio.tmanager.utils.ConfigUtil;
+
 /**
  * 
- * 用户 登录、登出以及注册servlet
+ * 用户 登录、登出servlet
  * 
  * @author gu<br/>
  * @version 1.0<br/>
@@ -30,6 +30,15 @@ public class LoginServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 4748429688545698854L;
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		
+		String configFilePath=config.getServletContext().getRealPath("")+"/WEB-INF/classes/config.properties"; 
+		ConfigUtil.init(configFilePath);
+		
+	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -38,8 +47,6 @@ public class LoginServlet extends HttpServlet {
 			login(request, response);
 		} else if ("leave".equals(oper)) {
 			leave(request, response);
-		} else if ("register".equals(oper)) {
-			register(request, response);
 		}
 	}
 
@@ -58,79 +65,37 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		String digest = null;
-		if (null != password) {
-			digest = DigestUtils.md5Hex(password);
-		}
+		
+	
 		logger.info("登陆系统，用户名：" + username + "，密码：******");
-		JSONObject json = null;
-
+		JSONObject json = new JSONObject();
 		try {
+			
+			String configUsername=ConfigUtil.getProperty("username");
+			String configPassword=ConfigUtil.getProperty("password");
 
-			if ("admin".equals(username)) {
+			if (configUsername.equals(username)&&configPassword.equals(password)) {
 				session.setAttribute("user", username);
 				String msg = "用户" + username + "登陆成功";
 				logger.info(msg);
-				json = new JSONObject();
-				json.put("retval", "ok");
-				json.put("errormsg", msg);
+				json.put("code", 0);
+				json.put("msg", msg);
 			} else {
 				String msg = "用户名或者密码错误！";
-				logger.info(msg);
-				json = new JSONObject();
-				json.put("retval", "error");
-				json.put("errormsg", msg);
+				logger.info(username+msg);
+				json.put("code", 1);
+				json.put("msg", msg);
 			}
 		} catch (Exception e) {
-			logger.info(e);
+			json.put("code", 1);
+			json.put("msg", "配置不正确");
+			logger.error(e);
 		}
 
 		writer.write(json.toString());
 	}
 
-	/**
-	 * 注册
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void register(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		response.setHeader("Cache-Control", "no-cache");
-		response.setContentType("text/plain;charset=UTF-8");
-		PrintWriter writer = response.getWriter();
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String digest = null;
-		if (null != password) {
-			digest = DigestUtils.md5Hex(password);
-		}
-		String userId = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
-
-		JSONObject json = null;
-		try {
-
-			// String msg = "用户" + username + "注册成功";
-			// logger.info(msg);
-			// json = new JSONObject();
-			// json.put("retval", "ok");
-			// json.put("errormsg", msg);
-
-			String msg = "注册不成功,账号名称已存在！";
-			logger.info(msg);
-			json = new JSONObject();
-			json.put("retval", "error");
-			json.put("errormsg", msg);
-
-		} catch (Exception e) {
-			logger.info(e);
-		}
-
-		writer.write(json.toString());
-	}
+	 
 
 	/**
 	 * 注销
@@ -146,10 +111,14 @@ public class LoginServlet extends HttpServlet {
 			logger.info("用户" + object.toString() + "退出系统！");
 
 			session.removeAttribute("user");
-
 			session.invalidate();
 		}
-		response.sendRedirect("login.html");
+		
+		JSONObject json = new JSONObject();
+		json.put("code", 0);
+		json.put("msg", "logout success.");
+		PrintWriter writer = response.getWriter();
+		writer.write(json.toString());
 	}
 
 }
