@@ -27,9 +27,14 @@ function startApp(appName){
 	$.ajax({
 		type : "GET",
 		url : "text/start?path="+appName,
-		success : function(data) { 
-			console.log(data);
-			getInformation();
+		success : function(data) {
+			var result=data.split(' - ');
+			if(result[0]=='FAIL'){
+				alert('启动不成功:'+result[1]);
+			}else{
+				alert('启动成功');
+				getInformation();
+			}
 		}
 	});
 }
@@ -43,9 +48,14 @@ function stopApp(appName){
 	$.ajax({
 		type : "GET",
 		url : "text/stop?path="+appName,
-		success : function(data) { 
-			console.log(data);
-			getInformation();
+		success : function(data) {
+			var result=data.split(' - ');
+			if(result[0]=='FAIL'){
+				alert('停止不成功:'+result[1]);
+			}else{
+				alert('停止成功');
+				getInformation();
+			}
 		}
 	});
 }
@@ -58,10 +68,14 @@ function reloadApp(appName){
 	$.ajax({
 		type : "GET",
 		url : "text/reload?path="+appName,
-		success : function(data) { 
-			alert('重载成功');
-			console.log(data);
-			getInformation();
+		success : function(data) {
+			var result=data.split(' - ');
+			if(result[0]=='FAIL'){
+				alert('重载不成功:'+result[1]);
+			}else{
+				alert('重载成功');
+				getInformation();
+			}
 		}
 	});
 }
@@ -75,10 +89,14 @@ function undeployApp(appName){
 	$.ajax({
 		type : "GET",
 		url : "text/undeploy?path="+appName,
-		success : function(data) { 
-			alert('卸载成功');
-			console.log(data);
-			getInformation();
+		success : function(data) {
+			var result=data.split(' - ');
+			if(result[0]=='FAIL'){
+				alert('卸载不成功:'+result[1]);
+			}else{
+				alert('卸载成功');
+				getInformation();
+			}
 		}
 	});
 }
@@ -119,15 +137,15 @@ function getInformation(){
 						var status=oneLine[1];
 						
 						if(status=='stopped'){
-							status='停止';
+							status='<span class="am-badge tpl-badge-danger">停止'+'</span>';
 						}else if(status=='running'){
-							status='运行中';
+							status='<span class="am-badge tpl-badge-success">运行中'+'</span>';
 						}
 						
 						
 						infoHtml+='<tr class="gradeX">'+
 								'<td><a href='+key+' target="_blank">'+key+'</a></td>'+
-								'<td><span class="am-badge tpl-badge-success">'+status+'</span>'+
+								'<td>'+status+
 								'</td>'+
 								'<td>'+oneLine[2]+'</td>'+
 								'<td>';
@@ -182,21 +200,8 @@ function getInformation(){
 			
 			$("#apps-info").html(infoHtml);
 			
-		},
-		beforeSend : function(xhr) {
-
-			//Authorization Header is present: Basic YWRtaW46YWRtaW4=
-			//Decoded Username:Password= admin:admin
-
-			xhr.setRequestHeader("Authorization", "Basic "
-					+ "YWRtaW46YWRtaW4=");
-
 		}
 	});
-	
-	
-	 
-	
 	
 	
 }
@@ -204,8 +209,6 @@ function getInformation(){
 
 //初始化
 $(function() {
-	
-	
 	
 	getInformation();
 	
