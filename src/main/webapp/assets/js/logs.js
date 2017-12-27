@@ -102,8 +102,6 @@ function getInformation(){
 	});
 	
 	
-	
-	
 }
 
 

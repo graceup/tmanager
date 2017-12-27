@@ -117,7 +117,7 @@ function getInformation(){
 			
 			var infoArray=replaceSeperator(data).split('；');
 			
-			console.log(infoArray); 
+//			console.log(infoArray); 
 			
 			var infoHtml='';
 			
@@ -130,7 +130,7 @@ function getInformation(){
 	
 					var key=oneLine[0];
 					
-					console.log(key); 
+//					console.log(key); 
 					if(!(key=='/'||key=='')){
 						
 						console.log(oneLine);

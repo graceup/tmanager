@@ -1,7 +1,6 @@
 //初始化
 $(function() { 
 	
-	
 	/*
 	 */
 	 $('#submit-button').on('click', function() {

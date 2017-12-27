@@ -2,58 +2,64 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tmanager</title>
-  <meta name="description" content="Tmanager">
-  <meta name="keywords" content="Tmanager">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
-  
-  <link rel="icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="apple-touch-icon-precomposed" href="assets/i/favicon.png">
-  <meta name="apple-mobile-web-app-title" content="Tmanager" />
-  
-  <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-  <link rel="stylesheet" href="assets/css/admin.css">
-  <link rel="stylesheet" href="assets/css/app.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>登录-Tmanager</title>
+<meta name="description" content="Tmanager">
+<meta name="keywords" content="Tmanager">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="icon" type="image/png" href="assets/i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="assets/i/favicon.png">
+<meta name="apple-mobile-web-app-title" content="Tmanager" />
+<meta name="author" content="http://www.igustudio.com" />
+
+<link rel="stylesheet" href="assets/css/amazeui.min.css" />
+<link rel="stylesheet" href="assets/css/admin.css">
+<link rel="stylesheet" href="assets/css/app.css">
 </head>
 
 <body data-type="login">
 
-  <div class="am-g myapp-login">
-	<div class="myapp-login-logo-block  tpl-login-max">
-		<div class="myapp-login-logo-text">
+	<div class="am-g myapp-login">
+		<div class="myapp-login-logo-block  tpl-login-max">
 			<div class="myapp-login-logo-text">
-				Tmanager<span> Login</span> <i class="am-icon-skyatlas"></i>
-				
+				<div class="myapp-login-logo-text">
+					Tmanager<span> Login</span> <i class="am-icon-skyatlas"></i>
+
+				</div>
+			</div>
+
+			<div class="login-font">
+				<i>如忘了密码，请重置应用</i>
+			</div>
+			<div class="am-u-sm-10 login-am-center">
+				<form class="am-form">
+					<fieldset>
+						<div class="am-form-group">
+							<input type="text" class="" id="doc-ipt-username-1"
+								placeholder="输入账号">
+						</div>
+						<div class="am-form-group">
+							<input type="password" class="" id="doc-ipt-pwd-1"
+								placeholder="输入密码吧">
+						</div>
+						<p>
+							<button type="button" class="am-btn am-btn-default"
+								id="login-btn">登录</button>
+						</p>
+					</fieldset>
+				</form>
 			</div>
 		</div>
-
-		<div class="login-font">
-			<i>如忘了密码，请重置应用</i>  
-		</div>
-		<div class="am-u-sm-10 login-am-center">
-			<form class="am-form">
-				<fieldset>
-					<div class="am-form-group">
-						<input type="text" class="" id="doc-ipt-username-1" placeholder="输入账号">
-					</div>
-					<div class="am-form-group">
-						<input type="password" class="" id="doc-ipt-pwd-1" placeholder="输入密码吧">
-					</div>
-					<p><button type="button" class="am-btn am-btn-default" id="login-btn" >登录</button></p>
-				</fieldset>
-			</form>
-		</div>
 	</div>
-</div>
 
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/amazeui.min.js"></script>
-  <script src="plugins/layer/layer.js"></script>
-  <script src="assets/js/login.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/amazeui.min.js"></script>
+	<script src="plugins/layer/layer.js"></script>
+	<script src="assets/js/login.js"></script>
 </body>
 
 </html>

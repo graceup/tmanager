@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Tmanager</title>
+<title>日志-Tmanager</title>
 <meta name="description" content="Tmanager">
 <meta name="keywords" content="Tmanager">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,7 @@
 <link rel="icon" type="image/png" href="assets/i/favicon.png">
 <link rel="apple-touch-icon-precomposed" href="assets/i/favicon.png">
 <meta name="apple-mobile-web-app-title" content="Tmanager" />
+<meta name="author" content="http://www.igustudio.com" />
 <link rel="stylesheet" href="assets/css/amazeui.min.css" />
 <link rel="stylesheet" href="assets/css/admin.css">
 <link rel="stylesheet" href="assets/css/app.css">
@@ -46,15 +47,18 @@
 				<li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
 					<a class="am-dropdown-toggle tpl-header-list-link"
 					href="javascript:;"> <span class="am-icon-bell-o"></span> 提醒 <span
-						class="am-badge tpl-badge-success am-round">1</span></span>
+						class="am-badge tpl-badge-success am-round">0</span>
 				</a>
+
 					<ul class="am-dropdown-content tpl-dropdown-content">
-						<li class="tpl-dropdown-list-bdbc"><a href="#"
+						<li class="tpl-dropdown-list-bdbc"><a
+							href="http://www.igustudio.com" target="_blank"
 							class="tpl-dropdown-list-fl"> <span
 								class="am-icon-btn am-icon-bell-o tpl-dropdown-ico-btn-size tpl-badge-warning"></span>
-								xxxxxx部署成功
-						</a> <span class="tpl-dropdown-list-fr">2秒前</span></li>
+								by GU工作室
+						</a></li>
 					</ul>
+
 				</li>
 
 
@@ -64,7 +68,7 @@
 
 				<li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
 					<a class="am-dropdown-toggle tpl-header-list-link"
-					href="javascript:;"> <span class="tpl-header-list-user-nick">admin</span>
+					href="javascript:;"> <span class="tpl-header-list-user-nick">管理员</span>
 				</a>
 				</li>
 				<li><a id="logout-link" class="tpl-header-list-link"><span
@@ -91,19 +95,17 @@
 					</a></li>
 					<li class="tpl-left-nav-item"><a href="apps.html"
 						class="nav-link tpl-left-nav-link-list"> <i
-							class="am-icon-bar-chart"></i> <span>应用</span> <i
-							class="tpl-left-nav-content tpl-badge-danger">12</i>
-
+							class="am-icon-toggle-on"></i> <span>应用</span>
 					</a></li>
 
 					<li class="tpl-left-nav-item"><a href="deploy.html"
 						class="nav-link tpl-left-nav-link-list"> <i
-							class="am-icon-key"></i> <span>部署</span>
+							class="am-icon-upload"></i> <span>部署</span>
 					</a></li>
 
 					<li class="tpl-left-nav-item"><a href="logs.html"
 						class="nav-link tpl-left-nav-link-list active"> <i
-							class="am-icon-key"></i> <span>日志</span>
+							class="am-icon-align-justify"></i> <span>日志</span>
 					</a></li>
 
 
@@ -137,34 +139,6 @@
 							</tr>
 						</thead>
 						<tbody id="logs-info">
-							<tr class="gradeX">
-								<td>catalina.out</td>
-								<td>30KB</td>
-								<td>2017-12-15 17:31:14</td>
-								<td>
-
-									<div class="am-btn-toolbar">
-										<div class="am-btn-group am-btn-group-xs">
-											<button
-												class="am-btn am-btn-default am-btn-xs am-text-secondary">
-												<span class="am-icon-cloud-download"></span>下载
-											</button>
-											<button
-												class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
-												<span class="am-icon-align-justify"></span> 跟踪
-											</button>
-											<button
-												class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-												<span class="am-icon-trash-o"></span> 删除
-											</button>
-										</div>
-									</div>
-
-
-
-								</td>
-							</tr>
-
 
 							<!-- more data -->
 						</tbody>
@@ -185,6 +159,7 @@
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
+	<script src="plugins/layer/layer.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/logs.js"></script>
 </body>

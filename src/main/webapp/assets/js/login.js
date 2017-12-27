@@ -24,29 +24,13 @@ $(function() {
 		 $.ajax({
 			 type : "POST",
 			 url : "login",
+			 dataType:"json",
 			 success : function(data) {
 				 console.log(data);
-			 },
-			 beforeSend : function(xhr) {
-				 
-				 //Authorization Header is present: Basic YWRtaW46YWRtaW4=
-				 //Decoded Username:Password= admin:admin
-				 
-				 xhr.setRequestHeader("Authorization", "Basic "
-						 + "YWRtaW46YWRtaW4=");
-				 
 			 }
 		 });
 		 
-		 
-		 
-		 
      });
-	
-	
-	
-	
-	
 	
 })
  
