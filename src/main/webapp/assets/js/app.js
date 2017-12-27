@@ -10,7 +10,21 @@ $(function() {
 	});
 
 	$('#logout-link').on('click', function() {
-		window.location = 'login.html';
+		
+		$.ajax({
+			type : "GET",
+			url : "login?oper=leave",
+			dataType:"json",
+			success : function(data) {
+				if(data.code==0){
+					window.location = 'login.html';
+				}else{
+					layer.msg('退出不成功');
+				}
+			}
+		});
+
+		
 	});
 
 	$('.tpl-switch').find('.tpl-switch-btn-view').on('click', function() {

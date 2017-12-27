@@ -66,15 +66,6 @@ function getInformation(){
 			
 			$("#text-info").html(infoHtml);
 			
-		},
-		beforeSend : function(xhr) {
-
-			//Authorization Header is present: Basic YWRtaW46YWRtaW4=
-			//Decoded Username:Password= admin:admin
-
-			xhr.setRequestHeader("Authorization", "Basic "
-					+ "YWRtaW46YWRtaW4=");
-
 		}
 	});
 	
@@ -132,8 +123,7 @@ function getInformation(){
 		
 			
 		},
-		dataType:"json",
-		beforeSend : function(xhr) { }
+		dataType:"json"
 	});
 	
 	
