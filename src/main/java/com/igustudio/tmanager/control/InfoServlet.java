@@ -39,8 +39,14 @@ public class InfoServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -2243668400971698202L;
 
+	/**
+	 * 日志
+	 */
 	private static final Logger logger = Logger.getLogger(InfoServlet.class);
 
+	/**
+	 * 格式化小数
+	 */
 	private static DecimalFormat DECIMALFORMAT = new DecimalFormat("#.##");
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -161,7 +167,7 @@ public class InfoServlet extends HttpServlet {
 
 			// json.put("properties", System.getProperties());
 
-			String msg = "获取成功！";
+			String msg = "系统信息获取成功！";
 
 			logger.info(msg);
 
@@ -171,7 +177,7 @@ public class InfoServlet extends HttpServlet {
 			json.put("msg", msg);
 
 		} catch (Exception e) {
-			logger.info("info error:" + e.getMessage(), e);
+			logger.error("info error:" + e.getMessage(), e);
 		}
 
 		writer.write(json.toString());

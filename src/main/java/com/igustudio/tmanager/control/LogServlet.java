@@ -133,7 +133,6 @@ public class LogServlet extends HttpServlet {
 							//转码
 							s = new String(s.getBytes("ISO-8859-1"),"gbk");
 							String line = s.trim();
-							System.out.println(line);
 							if (!line.equals("")) {
 								// 处理特殊字符
 								lines.add(replaceChar(line));
@@ -314,7 +313,7 @@ public class LogServlet extends HttpServlet {
 			}
 			
 
-			String msg = "获取成功！";
+			String msg = "日志列表获取成功！";
 
 			logger.info(msg);
 
