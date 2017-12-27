@@ -30,8 +30,12 @@ $(function() {
 					var msg=html[13].childNodes[1].childNodes[0].childNodes[3].childNodes[0].childNodes[0].textContent;
 					
 					console.log(msg);
+					if(msg=='OK'){
+						alert("部署成功");
+					}else{
+						alert("部署不成功："+msg);
+					}
 					
-					alert(msg);
 	         
 	     }});
 	
