@@ -129,26 +129,29 @@
 				
 				<div class="tpl-portlet">
                         <div class="tpl-portlet-title">
-                            <div class="tpl-caption font-green ">
-                                <span>日志路径: D:/aaaaa.log</span>
+                            <div class="tpl-caption">
+                               	 日志名称:<span id="logPath" class="font-green "></span>&nbsp;&nbsp;
+                               	 日志大小:<span id="fileSize"  class="font-green"></span>&nbsp;&nbsp;
+                               	 最后修改时间:<span id="lastModified" class="font-green"></span>&nbsp;&nbsp;
                             </div>
                             <div class="tpl-portlet-input">
-                                <div class="portlet-input input-small input-inline">
-                                    <div class="input-icon right">
+                                <div class="">
+                                    <div class=" ">
                                        
-                                       
-                                       <button class="am-btn am-btn-primary tpl-btn-bg-color-success">刷新</button>
+                                        <button id="btnpause" class="am-btn" onclick="pause()">暂停</button>
+										<button id="btnzoomin" class="am-btn tpl-btn-bg-color-success" onclick="zoomin()">放大</button>
+										<button id="btnzoomout" class="am-btn tpl-btn-bg-color-success" onclick="zoomout()">缩小</button>
+										<button id="btnclear" class="am-btn " onclick="clearlog()">清空</button>
+										<button id="btnrefresh" class="am-btn am-btn-primary tpl-btn-bg-color-success" onclick="refresh()">刷新</button>
+										
                                         
                                      </div>
                                 </div>
                             </div>
                         </div>
                         <div id="wrapper" class="wrapper">
-                            <div id="scroller" class="scroller" style="overflow-y: scroll; height: 200px;">
-                                 a<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa
-                                 a<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa
-                                 a<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa
-                                 a<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa<br>a<br>aa
+                            <div id="scroller" class="scroller">
+                                 
                             </div>
                         </div>
                     </div>
@@ -171,7 +174,6 @@
 
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/amazeui.min.js"></script>
-	<script src="assets/js/iscroll.js"></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/trace-log.js"></script>
 </body>

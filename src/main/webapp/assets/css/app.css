@@ -1972,3 +1972,15 @@ ul.tpl-dropdown-content li>a.tpl-dropdown-content-message:last-child {
 .reflesh-button{
 	float: right;
 }
+.scroller{
+	width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+	height: 385px;
+	border: 1px solid #ddd;
+}
+.line {
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #fff;
+}

@@ -94,7 +94,8 @@ public class LogServlet extends HttpServlet {
 				lf.put("fileName",logFile.getName());
 				
 				long actualLength = logFile.length();
-				lf.put("fileSize",actualLength);
+				lf.put("fileSize",Byteutils.formatByte(actualLength, 2));
+				lf.put("actualLength",actualLength);
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				lf.put("lastModified",sdf.format(new Date(logFile.lastModified())));

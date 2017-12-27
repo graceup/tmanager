@@ -1,87 +1,19 @@
-
-/**
- * 日志
- * 
- * @param fileName
- */
-function traceLog(fileName){
-	
-	$.ajax({
-		type : "GET",
-		url : "log?oper=trace&fileName="+fileName,
-		success : function(data) { 
-			console.log(data);
-			getInformation();
-		}
-	});
-}
-
-/**
- * 删除日志
- * 
- * @param fileName
- */
-function deleteLog(fileName){
-	
-	$.ajax({
-		type : "GET",
-		dataType:"json",
-		url : "log?oper=delete&fileName="+fileName,
-		success : function(data) { 
-			console.log(data);
-			if(data.code==0){
-				alert('删除成功。');
-				getInformation();
-			}else{
-				alert('删除不成功，请重试。');
-			}
-		}
-	});
-}
-
-/**
- * 获取基本信息
- * 
- */
-function getInformation(){
-	
-	
-	//获取Tomcat自带信息
-	$.ajax({
-		type : "GET",
-		url : "log?oper=trace&lastKnownLength=0&fileName="+fileName,
-		success : function(data) { 
-			console.log(data);
-			 
-			
-			$("#scroller").append(data.data);
-			
-		},
-		dataType:"json",
-		beforeSend : function(xhr) { }
-	});
-	
-	/*
-	 var myScroll = new IScroll('#wrapper', {
-         scrollbars: true,
-         mouseWheel: true,
-         interactiveScrollbars: true,
-         shrinkScrollbars: 'scale',
-         preventDefault: false,
-         fadeScrollbars: true
-     });
-	*/
-	
-}
-
-//获取url中的参数
+ /**
+  *获取url中的参数
+  * 
+  */
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg);  //匹配目标参数
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-var fileName=null;
+//定时对象
+var intervalObj=null;
+//文件名称
+var fileName;
+//文件大小(上次跟踪的位置)
+var actualLength=0;
 
 //初始化
 $(function() {
@@ -89,8 +21,111 @@ $(function() {
 	fileName=getUrlParam('fileName');
 	
 	
-	getInformation();
+	intervalObj=setInterval(function(){
+		 getLog(actualLength,fileName);
+	 },2000);
 	
 })
+
+
+/**
+ * 获取日志
+ * 
+ */
+function getLog(lastLength,fileName){
+	
+	//获取Tomcat自带信息
+	$.ajax({
+		type : "GET",
+		dataType:"json",
+		url : "log?oper=trace&lastKnownLength="+lastLength+"&fileName="+fileName,
+		success : function(data) { 
+			console.log(data);
+			
+			if(actualLength!=data.fileInfo.actualLength){
+			
+				$("#scroller").append(data.data);
+				$("#logPath").html(data.fileInfo.fileName);
+				$("#lastModified").html(data.fileInfo.lastModified);
+				$("#fileSize").html(data.fileInfo.fileSize);
+				
+				var div = document.getElementById('scroller');
+	            div.scrollTop = div.scrollHeight;
+	            
+	            actualLength=data.fileInfo.actualLength;
+			}
+            
+            
+			
+		}
+	});
+	
+}
+
+
+/**
+ * 切换跟踪日志
+ */
+function pause(){
+	
+	 if(intervalObj==null){
+		 intervalObj=setInterval(function(){
+			 
+			 getLog(actualLength,fileName);
+			 
+		 },2000);
+		 $("#btnpause").html("暂停");
+	 }else{
+		 window.clearInterval(intervalObj);
+		 intervalObj=null;
+		 $("#btnpause").html("继续");
+	 }
+	
+}
+
+ 
+ 
+/**
+ * 刷新页面
+ */
+function refresh(){
+	window.location=window.location.href;
+}
+ 
+/**
+ * 放大字体
+ */
+function zoomin(){
+	var e = $("#scroller");
+	if (e) {
+		var old_size = e.css('font-size').replace("px",""); 
+		var new_size = (old_size - 1 + 3);
+		if (new_size <= 32) {
+			e.css('font-size', new_size);
+		}
+	}
+}
+/**
+ * 缩小字体
+ */
+function zoomout(){
+	var e = $("#scroller");
+	if (e) {
+		var old_size = e.css('font-size').replace("px",""); 
+		var new_size = (old_size - 3 + 1);
+		if (new_size >= 4) {
+			e.css('font-size', new_size);
+		}
+	}
+}
+
+
+/**
+ * 清空日志
+ */
+function clearlog(){
+	$("#scroller").html("");
+}
+
    
  
