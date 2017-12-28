@@ -12,7 +12,18 @@
     A scriptable management web application for the Tomcat Web Server;
     Manager lets you view, load/unload/etc particular web applications.
   </description>
-	
+	<filter>
+		<filter-name>UrlFilter</filter-name>
+		<filter-class>com.igustudio.tmanager.filter.UrlFilter</filter-class>
+		<init-param>
+			<param-name>excludes</param-name>
+			<param-value>/assets/*,/plugins/*,/login.html,/login</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<!-- ===================SERVLET====================== -->
 	<servlet>
