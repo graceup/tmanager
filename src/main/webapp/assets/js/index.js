@@ -149,7 +149,52 @@ $(function() {
 		
 		
 	});
-	
+
+	 
+	 $('.change-password-button').on('click', function() {
+		 
+		 var user = $("#username").val();
+		 var pawd = $("#password").val();
+		 var newPassword = $("#newPassword").val();
+		 var newPassword2 = $("#newPassword2").val();
+			
+			if($.trim(user)==''){
+				layer.msg("用户名不能为空！");
+				$("#username").focus();
+				return;
+			}
+			if($.trim(pawd)==''){
+				layer.msg("密码不能为空！");
+				$("#password").focus();
+				return;
+			}
+			if($.trim(newPassword)==''){
+				layer.msg("新密码不能为空！");
+				$("#newPassword").focus();
+				return;
+			}
+
+			if(newPassword2!=newPassword){
+				layer.msg("请确认输入的新密码是否一致！");
+				$("#newPassword2").focus();
+				return;
+			}
+			 
+			 $.ajax({
+				 type : "POST",
+				 url : "login?oper=changePassword&username="+user+"&password="+pawd+"&newPassword="+newPassword,
+				 dataType:"json",
+				 success : function(data) {
+						if(data.code==0){
+							layer.msg(data.msg);
+						}else{
+							layer.msg(data.msg);
+						}
+					}
+			 });
+		 
+		 
+	 });
 	
 	
 	getInformation();
