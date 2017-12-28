@@ -47,9 +47,84 @@ public class LoginServlet extends HttpServlet {
 			login(request, response);
 		} else if ("leave".equals(oper)) {
 			leave(request, response);
+		} else if ("changePassword".equals(oper)) {
+			changePassword(request, response);
 		}
 	}
 
+	/**
+	 * 修改密码
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void changePassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		response.setHeader("Cache-Control", "no-cache");
+		response.setContentType("text/plain;charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		
+		
+		String username = request.getParameter("username");
+		logger.info("修改，用户名：" + username + "，密码：******");
+		JSONObject json = new JSONObject();
+		Object obj=session.getAttribute("user");
+		if(obj==null){
+			json.put("code", 1);
+			json.put("msg", "请登录");
+		}else{
+			String password = request.getParameter("password");
+			try {
+				
+				String configUsername=ConfigUtil.getProperty("username");
+				String configPassword=ConfigUtil.getProperty("password");
+				if (configUsername.equals(username)&&configPassword.equals(password)) {
+					
+					String newPassword = request.getParameter("newPassword");
+					if(newPassword==null){
+						String msg ="新密码不能为空";
+						logger.info(msg);
+						json.put("code", 1);
+						json.put("msg", msg);
+						
+					}else{	
+					
+						String configFilePath=request.getSession().getServletContext().getRealPath("")+"/WEB-INF/classes/config.properties"; 
+						boolean updateResult=ConfigUtil.updatePro(configFilePath, "password", newPassword);
+						
+						if(updateResult){
+							ConfigUtil.init(configFilePath);
+							
+							String msg = "用户" + username + "修改密码成功";
+							logger.info(msg);
+							json.put("code", 0);
+							json.put("msg", msg);
+						}else{
+							String msg ="修改密码不成功";
+							logger.info(username+msg);
+							json.put("code", 1);
+							json.put("msg", msg);
+						}
+					
+					}
+					
+				} else {
+					String msg = "用户名或者旧密码错误！";
+					logger.info(username+msg);
+					json.put("code", 1);
+					json.put("msg", msg);
+				}
+			} catch (Exception e) {
+				json.put("code", 1);
+				json.put("msg", "配置不正确");
+				logger.error(e);
+			}
+		}
+		writer.write(json.toString());
+	}
+	
 	/**
 	 * 登陆
 	 * 

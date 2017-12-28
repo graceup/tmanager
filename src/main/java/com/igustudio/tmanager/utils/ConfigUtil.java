@@ -2,6 +2,8 @@ package com.igustudio.tmanager.utils;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -52,5 +54,32 @@ public class ConfigUtil {
 
 		return null;
 	}
+	
+	/**
+	 * 参数为要修改的文件路径  以及要修改的属性名和属性值  
+	 * 
+	 * @param path
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+    public static Boolean updatePro(String path,String key,String value){  
+       
+        properties.setProperty(key, value);   
+        // 文件输出流   
+        try {  
+            FileOutputStream fos = new FileOutputStream(path);   
+            // 将Properties集合保存到流中   
+            properties.store(fos, "Copyright (c)");   
+            fos.close();// 关闭流   
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();  
+            return false;  
+        } catch (IOException e) {  
+            e.printStackTrace();  
+            return false;  
+        }  
+        return true;  
+    }  
 
 }
