@@ -20,17 +20,17 @@ Tomcat提供了manager，可以对应用进行管理，不过manager是英文版
 
 效果图如下：
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/1.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/1.png)
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/2.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/2.png)
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/3.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/3.png)
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/4.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/4.png)
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/5.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/5.png)
 
-![image](https://github.com/graceup/tmanager/master/pic/pc/6.png)
+![image](https://github.com/graceup/tmanager/blob/master/pic/pc/6.png)
 
  
 
