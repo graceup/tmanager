@@ -30,9 +30,9 @@ function startApp(appName){
 		success : function(data) {
 			var result=data.split(' - ');
 			if(result[0]=='FAIL'){
-				alert('启动不成功:'+result[1]);
+				layer.alert('启动不成功:'+result[1]);
 			}else{
-				alert('启动成功');
+				layer.alert('启动成功');
 				getInformation();
 			}
 		}
@@ -51,9 +51,9 @@ function stopApp(appName){
 		success : function(data) {
 			var result=data.split(' - ');
 			if(result[0]=='FAIL'){
-				alert('停止不成功:'+result[1]);
+				layer.alert('停止不成功:'+result[1]);
 			}else{
-				alert('停止成功');
+				layer.alert('停止成功');
 				getInformation();
 			}
 		}
@@ -71,10 +71,21 @@ function reloadApp(appName){
 		success : function(data) {
 			var result=data.split(' - ');
 			if(result[0]=='FAIL'){
-				alert('重载不成功:'+result[1]);
+				layer.alert('重载不成功:'+result[1]);
 			}else{
-				alert('重载成功');
-				getInformation();
+				
+				
+				layer.alert('重载成功', {
+				    skin: 'layui-layer-lan'
+				    ,closeBtn: 0
+				    ,anim: 4 //动画类型
+				  },function(index){
+					  
+					  layer.close(index);
+					  
+					  getInformation();
+				  });
+				
 			}
 		}
 	});
@@ -92,9 +103,9 @@ function undeployApp(appName){
 		success : function(data) {
 			var result=data.split(' - ');
 			if(result[0]=='FAIL'){
-				alert('卸载不成功:'+result[1]);
+				layer.alert('卸载不成功:'+result[1]);
 			}else{
-				alert('卸载成功');
+				layer.alert('卸载成功');
 				getInformation();
 			}
 		}
